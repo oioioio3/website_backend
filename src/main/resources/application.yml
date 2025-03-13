@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+spring:
+  # 允许Bean覆盖
+  main:
+    allow-bean-definition-overriding: true
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/website?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&connectionCollation=utf8mb4_unicode_ci
+    username: root
+    password: 123456
+  
+  # 邮件配置
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 480320276@qq.com
+    password: lxrzvzuerzybbgec
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+
+# MyBatis Plus配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.pairuan.website.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 日志配置
+logging:
+  level:
+    com.pairuan.website: debug
+
+# HTTP消息转换配置
+http:
+  encoding:
+    charset: UTF-8
+    enabled: true
+    force: true
+
+# JSON序列化配置
+jackson:
+  date-format: yyyy-MM-dd HH:mm:ss
+  time-zone: GMT+8
+  default-property-inclusion: non_null
+  serialization:
+    fail-on-empty-beans: false
+    write-dates-as-timestamps: false
+    indent-output: true
+  deserialization:
+    fail-on-unknown-properties: false
+  property-naming-strategy: SNAKE_CASE
+  locale: zh_CN
+  encoding: UTF-8 
